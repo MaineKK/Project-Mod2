@@ -1,5 +1,5 @@
-const mongoose = requiere ('mongoose');
-const bcrypt = requiere ('bcryptjs');
+const mongoose = require ('mongoose');
+const bcrypt = require ('bcryptjs');
 const WORK_FACTOR = 12;
 const Schema = mongoose.Schema;
 
