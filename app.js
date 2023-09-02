@@ -1,9 +1,12 @@
 const express = require ('express');
-const logger = require ('morgan');
+const logger =require('morgan');
+require("./config/db.config");
+
 
 const app = express();
-app.set ('view engine, hbs');
-app.set ('views', `${__dirname}/views`);
+app.set('view engine', 'hbs');
+app.set('views', `${__dirname}/views`);
+
 
 app.use(logger('dev'));
 

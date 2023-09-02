@@ -3,8 +3,7 @@ const bcrypt = require ('bcryptjs');
 const WORK_FACTOR = 12;
 const Schema = mongoose.Schema;
 
-const EMAIL_PATTERN = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-
+EMAIL_PATTERN = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
 const userSchema = new Schema({
     name: {
@@ -36,6 +35,11 @@ const userSchema = new Schema({
       minLength: [10, 'User password needs at least 8 chars']
     },
   
+    room:{
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Room'
+    }
+
   }, { timestamps: true });
 
   userSchema.pre('save', function(next) {
@@ -52,6 +56,8 @@ const userSchema = new Schema({
       next();
     }
   });
+
+
 
   userSchema.methods.checkPassword = function(password){
     const user = this;
