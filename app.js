@@ -7,7 +7,7 @@ app.set ('views', `${__dirname}/views`);
 
 app.use(logger('dev'));
 
-const routes = requiere('../config/routes.config');
+const routes = require('./config/routes.config');
 app.use('/', routes);
 
 const PORT = process.env.PORT || 3000;
