@@ -31,3 +31,41 @@ module.exports.doRegister = (req, res, next) => {
     })
     
 }
+
+
+module.exports.login = (req, res, next) => res.render('users/login');
+
+module.exports.doLogin = (req, res, next) => {
+
+  function renderInvalidUsername() {
+    res.render('users/login', {
+      user: req.body,
+      errors: {
+        password: 'Invalid username or password'
+      }
+    })
+  }
+
+  User.findOne({ username: req.body.username })
+    .then((user) => {
+      if (user) {
+        return user.checkPassword(req.body.password)
+          .then((match) => {
+            if (match) {
+              req.session.userId = user.id;
+              res.redirect('/profile')
+            } else {
+              renderInvalidUsername();
+            }
+          })
+      } else {
+        renderInvalidUsername();
+      }
+    })
+    .catch((error) => next(error));
+}
+
+
+module.exports.profile = (req, res, next) => {
+  res.render('users/profile', { user: req.user })
+}
