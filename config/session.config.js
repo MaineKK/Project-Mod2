@@ -4,7 +4,7 @@ const mongoose = require('mongoose');
 const User = require('../models/user.model');
 
 module.exports.session = expressSession({
-  secret: process.env.SESSION_SECRET || 'super-secret (change it)',
+  secret: process.env.SESSION_SECRET || 'super-secret',
   resave: false,
   saveUninitialized: false,
   store: MongoStore.create({
