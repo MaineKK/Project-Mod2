@@ -9,10 +9,11 @@ module.exports.session = expressSession({
   saveUninitialized: false,
   store: MongoStore.create({
     mongoUrl: mongoose.connection._connectionString,
-    ttl: 14 * 24 * 60 * 60 // 14 days expiration
+    ttl: 14 * 24 * 60 * 60 
   }),
   cookie: {
     httpOnly: true,
     secure: process.env.SESSION_SECURE === 'true'
   }
-})
+});
+

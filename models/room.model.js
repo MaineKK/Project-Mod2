@@ -1,5 +1,5 @@
 const mongoose = require ('mongoose');
-const { checkout } = require('../config/routes.config');
+const { checkOut } = require('../config/routes.config');
 const Schema = mongoose.Schema;
 
 
