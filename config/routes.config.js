@@ -16,5 +16,6 @@ router.post('/login', users.doLogin);
 router.get('/profile', secure.isAuthenticated, users.profile);
 
 router.get('/rooms', rooms.searchRooms)
+router.get('/list', rooms.searchRooms);
 
 module.exports = router;

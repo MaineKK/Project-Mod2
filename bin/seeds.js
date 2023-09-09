@@ -40,8 +40,7 @@ mongoose.connection
         checkOut: ""
       },
     ])
-      .then(() => {
-        console.log("cuartos creados")
-      })
+  .then(() => {
+      console.log("cuartos creados");
   })
-  .catch(console.error);
+  .catch(console.error); });
