@@ -1,0 +1,36 @@
+<div class="container">
+  <h1>Payment Form</h1>
+  <form action="/processPayment" method="post">
+    <div class="mb-3">
+      <label for="cardHolderName" class="form-label">Name</label>
+      <input type="text" class="form-control" id="cardHolderName" name="cardHolderName" required>
+      {{#if errors.cardHolderName}}
+        <div class="alert alert-danger">{{errors.cardHolderName.message}}</div>
+      {{/if}}
+    </div>
+    <div class="mb-3">
+      <label for="cardNumber" class="form-label">Card Number</label>
+      <input type="text" class="form-control" id="cardNumber" name="cardNumber" required>
+      {{#if errors.cardNumber}}
+        <div class="alert alert-danger">{{errors.cardNumber.message}}</div>
+      {{/if}}
+    </div>
+    <div class="mb-3">
+      <label for="expirationDate" class="form-label">Expiration Date</label>
+      <input type="text" class="form-control" id="expirationDate" name="expirationDate" required>
+      {{#if errors.expirationDate}}
+        <div class="alert alert-danger">{{errors.expirationDate.message}}</div>
+      {{/if}}
+    </div>
+    <div class="mb-3">
+      <label for="cvv" class="form-label">CVV</label>
+      <input type="text" class="form-control" id="cvv" name="cvv" required>
+      {{#if errors.cvv}}
+        <div class="alert alert-danger">{{errors.cvv.message}}</div>
+      {{/if}}
+    </div>
+    <button type="submit" class="btn btn-success">Pay</button>
+  </form>
+</div>
+
+  

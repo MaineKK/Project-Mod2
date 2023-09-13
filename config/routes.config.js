@@ -4,7 +4,7 @@ const router = express.Router();
 const users = require('../controllers/users.controller');
 const rooms = require('../controllers/rooms.controller');
 const secure = require('../middlewares/secure.mid');
-
+const payments = require('../controllers/payments.controller');
 router.get('/', (req, res) => {
     res.render('home'); 
   });
@@ -17,5 +17,10 @@ router.get('/profile', secure.isAuthenticated, users.profile);
 
 router.get('/rooms', rooms.searchRooms)
 router.get('/list', rooms.searchRooms);
+
+router.get('/payment', (req, res) => {
+    res.render('payment'); 
+});
+router.post('/processPayment', payments.processPayment);
 
 module.exports = router;

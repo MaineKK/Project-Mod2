@@ -10,6 +10,10 @@ const userSchema = new Schema({
       type: String,
       required: 'User name is required'
     },
+    lastName: {
+      type: String,
+      required: 'User last name is required'
+    },
     email: {
       type: String,
       required: 'User email is required',
@@ -32,9 +36,25 @@ const userSchema = new Schema({
     password: {
       type: String,
       required: 'User password is required',
-      minLength: [10, 'User password needs at least 8 chars']
+      minLength: [6, 'User password needs at least 6 chars']
     },
-  
+    birthdate: {
+      type: Date,
+      required: 'User birthdate is required'
+    },
+    dni: {
+      type: String,
+      required: 'User DNI is required'
+    },
+    address: {
+      type: String,
+      required: 'User address is required'
+    },
+    phone: {
+      type: String,
+      required: 'User phone number is required'
+    },
+
     room:{
       type: mongoose.Schema.Types.ObjectId,
       ref: 'Room'

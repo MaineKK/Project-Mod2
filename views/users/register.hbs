@@ -10,7 +10,13 @@
             <input type="text" name="name" class="form-control {{#if errors.name}}is-invalid{{/if}}" placeholder="Name" aria-label="Name" value="{{ user.name }}">
             {{#if errors.name}}<div class="invalid-feedback">{{ errors.name }}</div>{{/if}} 
           </div>
-        
+
+        <div class="input-group mb-1">
+            <span class="input-group-text"><i class="fa fa-fw fa-user"></i></span>
+            <input type="text" name="LastName" class="form-control" placeholder="Last Name" aria-label="Last Name">
+             {{#if errors.LastName}}<div class="invalid-feedback">{{ errors.LastName }}</div>{{/if}} 
+         </div>
+
          <div class="input-group mb-1">
             <span class="input-group-text"><i class="fa fa-fw fa-tag"></i></span>
             <input type="text" name="username" class="form-control {{#if errors.username}}is-invalid{{/if}}" placeholder="Username"
@@ -32,6 +38,26 @@
             {{#if errors.password}}<div class="invalid-feedback">{{ errors.password }}</div>{{/if}}
         </div>
         
+        <div class="input-group mb-1">
+            <span class="input-group-text"><i class="fa fa-fw fa-calendar"></i></span>
+            <input type="date" name="birthdate" class="form-control" placeholder="Birth Date" aria-label="Birth Date">
+          </div>
+
+          <div class="input-group mb-1">
+            <span class="input-group-text"><i class="fa fa-fw fa-phone"></i></span>
+            <input type="tel" name="phone" class="form-control" placeholder="Phone Number" aria-label="Phone Number">
+          </div>
+
+          <div class="input-group mb-1">
+            <span class="input-group-text"><i class="fa fa-fw fa-id-card"></i></span>
+            <input type="text" name="dni" class="form-control" placeholder="DNI/Passport" aria-label="DNI/Passport">
+          </div>
+
+          <div class="input-group mb-1">
+            <span class="input-group-text"><i class="fa fa-fw fa-home"></i></span>
+            <input type="text" name="address" class="form-control" placeholder="Adress" aria-label="Adress">
+          </div>
+
         <div class="d-grid gap-2 mt-2">
          <button type="submit" class="btn btn-dark">Register</button>
         </div>

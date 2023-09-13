@@ -1,51 +1,22 @@
+<div class="container text-center">
 <h1>Rooms</h1>
- <div class="card" style="width: 18rem;">
-  <img src="" class="card-img-top" alt="">
-  <div class="card-body">
-    <h5 class="card-title">Double</h5>
-    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-  </div>
-  <ul class="list-group list-group-flush">
-    <li class="list-group-item">An item</li>
-    <li class="list-group-item">A second item</li>
-    <li class="list-group-item">A third item</li>
-  </ul>
-  <div class="card-body">
-    <a href="#" class="btn btn-primary">Select</a>
-  </div>
 </div>
-
-
-<div class="card" style="width: 18rem;">
-  <img src="" class="card-img-top" alt="">
-  <div class="card-body">
-    <h5 class="card-title">Tirple</h5>
-    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+<div class="row">
+  {{#each rooms}}
+  <div class="col-4">
+    <div class="card d-inline-block" style="width: 18rem;">
+      <img src="{{image}}" class="card-img-top" alt="">
+      <div class="card-body">
+        <h5 class="card-title">{{name}}</h5>
+        <p class="card-text">{{description}}</p>
+      </div>
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item">Price: {{price}}</li>
+      </ul>
+       <div class="card-body">
+        <a href="/payment?room={{_id}}" class="btn btn-dark">Reserve</a>
+      </div>
+    </div>
   </div>
-  <ul class="list-group list-group-flush">
-    <li class="list-group-item">An item</li>
-    <li class="list-group-item">A second item</li>
-    <li class="list-group-item">A third item</li>
-  </ul>
-  <div class="card-body">
-    <a href="#" class="btn btn-primary">Select</a>
-  </div>
+  {{/each}}
 </div>
-
-
-<div class="card" style="width: 18rem;">
-  <img src="" class="card-img-top" alt="">
-  <div class="card-body">
-    <h5 class="card-title">Suite</h5>
-    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-  </div>
-  <ul class="list-group list-group-flush">
-    <li class="list-group-item">An item</li>
-    <li class="list-group-item">A second item</li>
-    <li class="list-group-item">A third item</li>
-  </ul>
-  <div class="card-body">
-    <a href="#" class="btn btn-primary">Select</a>
-  </div>
-</div>
-

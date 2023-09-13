@@ -9,10 +9,10 @@ mongoose.connection
   .then(() => {
     Room.create([
       {
-        name: "1",
+        name: "Estandar",
         type: "doble",
-        price: "12345678",
-        description: "habitacion para dos",
+        price: "70€",
+        description: "habitacion para dos personas ",
         availabilty: true,
         image: "",
         checkIn: "",
@@ -20,14 +20,14 @@ mongoose.connection
     
       },
       {
-        name: "2",
-        type: "triple",
-        price: "12345678",
+        name: "Familiar",
+        type: "Triple",
+        price: "120",
         description: "habitacion para tres personas",
-        availabilty: false,
+        availabilty: true,
         image: "",
-        checkIn: "2023-09-01",
-        checkOut: "2023-09-03",
+        checkIn: "",
+        checkOut: "",
       },
       {
         name: "3",
