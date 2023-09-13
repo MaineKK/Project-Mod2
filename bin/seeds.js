@@ -14,8 +14,8 @@ mongoose.connection
         price: "70€",
         description: "habitacion para dos personas ",
         availabilty: true,
-        image: "",
-        checkIn: "",
+        image: "doble.jpg",
+        checkIn: "doble.jpg",
         checkOut: ""
     
       },
@@ -25,7 +25,7 @@ mongoose.connection
         price: "120",
         description: "habitacion para tres personas",
         availabilty: true,
-        image: "",
+        image: "triple.jpg",
         checkIn: "",
         checkOut: "",
       },
@@ -35,7 +35,7 @@ mongoose.connection
         price: "12345678",
         description: "habitacion para cuatro",
         availabilty: true,
-        image: "",
+        image: "suite.jpg",
         checkIn: "",
         checkOut: ""
       },

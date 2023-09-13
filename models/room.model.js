@@ -21,7 +21,11 @@ const roomSchema = new Schema ({
         type: String,
         required: true,
       },
-      image: String, 
+      image:{ 
+        type: String, 
+        enum: ['doble.jpg', 'triple.jpg', 'suite.jpg'],
+        required: true,
+      },
 
       availabilty: {
         type: Boolean,

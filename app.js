@@ -2,11 +2,13 @@ const express = require ('express');
 const logger =require('morgan');
 const flash = require('connect-flash');
 require("./config/db.config");
+const path = require('path');
 
 
 const app = express();
 app.set('view engine', 'hbs');
 app.set('views', `${__dirname}/views`);
+app.use(express.static(path.join(__dirname, '/public')));
 
 app.use(express.urlencoded());
 app.use(logger('dev'));
