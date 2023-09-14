@@ -3,31 +3,31 @@ const mongoose = require('mongoose');
 
 
 module.exports.processPayment = (req, res, next) => {
-    const { nombre, apellido, numeroTarjeta, codigoCVV } = req.body;
+  const { cardHolderName, cardNumber, expirationDate, cvv } = req.body;
+
   
-    // Crea una nueva instancia de Payment con los datos del formulario
-    const newPayment = new Payment({
-      cardHolderName: nombre, // Asigna el nombre del titular de la tarjeta
-      cardNumber: numeroTarjeta, // Asigna el número de tarjeta
-      expirationDate: 'MM/YY', // Aquí debes asignar la fecha de vencimiento adecuada
-      cvv: codigoCVV, // Asigna el código CVV
+  const newPayment = new Payment({
+    cardHolderName,
+    cardNumber,
+    expirationDate, 
+    cvv,
+  });
+
+  
+  newPayment
+    .save()
+    .then(() => {
+     
+      
+      res.redirect('/confirmation');
+    })
+    .catch((error) => {
+      console.error('Error al procesar el pago:', error);
+      if (error.errors) {
+        const validationErrors = Object.values(error.errors).map((error) => error.message);
+        res.render('payment', { errors: validationErrors });
+      } else {
+        next(error);
+      }
     });
-  
-    // Guarda la instancia de Payment en la base de datos
-    newPayment.save()
-      .then(() => {
-        // Realiza cualquier otra lógica necesaria aquí
-  
-        // Redirige al usuario a una página de confirmación
-        res.redirect('/confirmation');
-      })
-      .catch((error) => {
-        console.error('Error al procesar el pago:', error);
-        if (error instanceof mongoose.Error.ValidationError) {
-          res.render('payment', { errors: error.errors });
-        } else {
-          next(error);
-        }
-      });
-  };
-  
+};

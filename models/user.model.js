@@ -2,6 +2,7 @@ const mongoose = require ('mongoose');
 const bcrypt = require ('bcryptjs');
 const WORK_FACTOR = 12;
 const Schema = mongoose.Schema;
+const reservationSchema = require('./reservation.model');
 
 EMAIL_PATTERN = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
@@ -10,10 +11,7 @@ const userSchema = new Schema({
       type: String,
       required: 'User name is required'
     },
-    lastName: {
-      type: String,
-      required: 'User last name is required'
-    },
+    
     email: {
       type: String,
       required: 'User email is required',
@@ -55,10 +53,10 @@ const userSchema = new Schema({
       required: 'User phone number is required'
     },
 
-    room:{
-      type: mongoose.Schema.Types.ObjectId,
-      ref: 'Room'
-    }
+    reservations: [{
+      type: Schema.Types.ObjectId,
+      ref: 'Reservation' 
+    }],
 
   }, { timestamps: true });
 

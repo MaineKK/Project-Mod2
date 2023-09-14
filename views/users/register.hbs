@@ -11,11 +11,7 @@
             {{#if errors.name}}<div class="invalid-feedback">{{ errors.name }}</div>{{/if}} 
           </div>
 
-        <div class="input-group mb-1">
-            <span class="input-group-text"><i class="fa fa-fw fa-user"></i></span>
-            <input type="text" name="LastName" class="form-control" placeholder="Last Name" aria-label="Last Name">
-             {{#if errors.LastName}}<div class="invalid-feedback">{{ errors.LastName }}</div>{{/if}} 
-         </div>
+        
 
          <div class="input-group mb-1">
             <span class="input-group-text"><i class="fa fa-fw fa-tag"></i></span>
@@ -64,6 +60,9 @@
 
          </form>
       </div>
+    </div>
+    <div class="text-center mt-3">
+      <a href="/login" class="btn btn-secondary">Login</a>
     </div>
   </div>
 </div>

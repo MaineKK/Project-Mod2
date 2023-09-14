@@ -30,12 +30,6 @@ const roomSchema = new Schema ({
       availabilty: {
         type: Boolean,
       },
-      checkIn: {
-        type: Date,
-      },
-      checkOut: {
-        type: Date,
-      }
     });
 
     const Room = mongoose.model('Room', roomSchema);

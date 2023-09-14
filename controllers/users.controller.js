@@ -17,7 +17,7 @@ module.exports.doRegister = (req, res, next) => {
         return User.create(req.body)
           .then(() => {
             req.flash('data', JSON.stringify({ info: 'Please login in'}));
-            res.redirect('/login')
+            res.redirect('/payment')
           })
       }
     })
@@ -46,13 +46,14 @@ module.exports.doLogin = (req, res, next) => {
   }
 
   User.findOne({ username: req.body.username })
+    .populate('reservations.room') 
     .then((user) => {
       if (user) {
         return user.checkPassword(req.body.password)
           .then((match) => {
             if (match) {
               req.session.userId = user.id;
-              res.redirect('/profile')
+              res.redirect('/profile',)
             } else {
               renderInvalidUsername();
             }
