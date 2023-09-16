@@ -14,9 +14,13 @@ router.post('/Register', users.doRegister);
 router.get('/login', users.login);
 router.post('/login', users.doLogin);
 router.get('/profile', secure.isAuthenticated, users.profile);
-router.get('/logout', (req, res) => {
-  req.logout();
-  res.redirect('/login');
+router.post('/logout', (req, res) => {
+  if (req.session) {
+    
+    req.session.destroy();
+    res.redirect('/login');
+  }
+  
 });
 
 router.get('/rooms', rooms.searchRooms)

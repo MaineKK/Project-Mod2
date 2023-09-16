@@ -7,17 +7,24 @@
         </div>
         <ul class="list-group list-group-flush">
           <li class="list-group-item"><strong>Email:</strong> {{user.email}}</li>
-          <li class="list-group-item"><strong>Número de Teléfono:</strong> {{user.phone}}</li>
-          <li class="list-group-item"><strong>Dirección:</strong> {{user.address}}</li>
+          <li class="list-group-item"><strong>Phone Number:</strong> {{user.phone}}</li>
+          <li class="list-group-item"><strong>Address:</strong> {{user.address}}</li>
         </ul>
       </div>
       <div class="card mt-4">
-  <div class="card-body">
-    <h5 class="card-title">Habitación Reservada</h5>
-         Habitación: {{this.room.name}}
-  </div>
-</div>
+        <div class="card-body">
+          <h5 class="card-title">Reserved Room</h5>
+          Room: {{this.room.name}}
+        </div>
+      </div>
     </div>
-    <a href="/login" class="btn btn-danger">Cerrar Sesión</a>
+    <div class="col-md-6 mt-4"> 
+      <div class="text-end"> 
+        <form action="/logout" method="post">
+         <button type="submit" class="btn btn-danger">Log Out</button>
+        </form>
+       
+      </div>
+    </div>
   </div>
 </div>
