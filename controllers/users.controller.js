@@ -17,7 +17,7 @@ module.exports.doRegister = (req, res, next) => {
         return User.create(req.body)
           .then(() => {
             req.flash('data', JSON.stringify({ info: 'Please login in'}));
-            res.redirect('/payment')
+            res.redirect('/login')
           })
       }
     })
@@ -53,7 +53,7 @@ module.exports.doLogin = (req, res, next) => {
           .then((match) => {
             if (match) {
               req.session.userId = user.id;
-              res.redirect('/profile',)
+              res.redirect('/reservation',)
             } else {
               renderInvalidUsername();
             }
