@@ -1,0 +1,49 @@
+.form-overlay {
+  position: absolute;
+  top: 30%; 
+  left: 40%;
+  transform: translate(-50%, -50%);
+  background-color: rgba(255, 255, 255, 0.62); 
+  padding: 20px;
+  border-radius: 10px;
+  z-index: 1; 
+  width: 80%; 
+  max-width: 400px; 
+}
+.form-overlay {
+  margin: 0 10%; 
+}
+
+.form-overlay .col-md-6 {
+  width: 100%; 
+  max-width: 100%; }
+
+
+#background-carousel {
+  width: 100%; 
+}
+
+
+.fullscreen-container {
+  position: relative;
+  width: 100vw; 
+  height: 100vh; 
+  overflow: hidden;
+}
+
+#imageCarousel {
+  width: 100%;
+  height: 100%;
+}
+
+#imageCarousel .carousel-inner,
+#imageCarousel .carousel-item {
+  width: 100%;
+  height: 100%;
+}
+
+#imageCarousel img {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+}
