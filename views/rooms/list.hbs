@@ -15,7 +15,7 @@
       </ul>
       <div class="card-body">
         {{#if ../userId}}
-       <a href="/reservation?roomId={{_id}}" class="btn btn-dark">Select this room {{userId}}</a>
+       <a href="/reservation?roomId={{_id}}&checkOutDate={{../checkOutDate}}&checkInDate={{../checkInDate}}" class="btn btn-dark">Select this room</a>
         {{else}}
         <a href="/login?roomId={{_id}}" class="btn btn-dark">Select this room</a>
         {{/if}}

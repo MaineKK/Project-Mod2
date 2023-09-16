@@ -4,7 +4,8 @@ const User = require('../models/user.model');
 const Room = require('../models/room.model');
 
 module.exports.showReservationPage = (req, res) => {
-    res.render('reservation'); 
+    const {checkInDate, checkOutDate, roomId} = req.query
+    res.render('reservation',{checkInDate, checkOutDate}); 
   }; 
   
 module.exports.createReservation = (req, res, next) => {

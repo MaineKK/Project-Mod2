@@ -5,10 +5,10 @@ const Reservation = require('../models/reservation.model');
 
 module.exports.renderRoomList = (req, res) => { 
   const userId = req.session.userId;
-  console.log(userId)
+  const {checkInDate, checkOutDate} = req.query
   Room.find()
     .then((rooms) => {
-      res.render('rooms/list', { rooms, userId });
+      res.render('rooms/list', { rooms, userId, checkInDate, checkOutDate });
     })
     .catch((error) => {
       console.error(error);
