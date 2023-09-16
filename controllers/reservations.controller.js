@@ -1,11 +1,14 @@
+const mongoose = require('mongoose');
 const Reservation = require('../models/reservation.model');
 const User = require('../models/user.model');
 const Room = require('../models/room.model');
 
-
+module.exports.showReservationPage = (req, res) => {
+    res.render('reservation'); 
+  }; 
+  
 module.exports.createReservation = (req, res, next) => {
     const { checkOutDate, checkInDate, userId, roomId } = req.body;
-    const selectedRoomId = req.session.selectedRoomId;
 
     const newReservation = new Reservation({
       checkOutDate,
@@ -14,19 +17,17 @@ module.exports.createReservation = (req, res, next) => {
       user: req.user._id, 
      
     });
-  
-    
     newReservation.save()
       .then((reservation) => {
-        
+        console.log(`Created reservation: ${reservation}`);
         User.findByIdAndUpdate(userId, { $push: { reservations: reservation._id } })
           .then(() => {
           
             Room.findByIdAndUpdate(roomId, { $push: { reservations: reservation._id } })
               .then(() => {
-                delete req.session.selectedRoomId;
+                delete req.session.roomId;
 
-                res.redirect('/confirmation');
+                res.redirect('/reservation');
               })
               .catch(next);
           })

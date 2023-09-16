@@ -1,4 +1,6 @@
 const User = require('../models/user.model');
+const Reservation = require('../models/reservation.model');
+const Room = require('../models/room.model');
 const mongoose = require('mongoose');
 
 module.exports.register = (req, res, next) => res.render('users/register');
@@ -44,26 +46,33 @@ module.exports.doLogin = (req, res, next) => {
       }
     })
   }
-
+console.log(req)
   User.findOne({ username: req.body.username })
-    .populate('reservations.room') 
-    .then((user) => {
-      if (user) {
-        return user.checkPassword(req.body.password)
-          .then((match) => {
-            if (match) {
-              req.session.userId = user.id;
-              res.redirect('/reservation',)
-            } else {
-              renderInvalidUsername();
-            }
-          })
-      } else {
-        renderInvalidUsername();
-      }
-    })
-    .catch((error) => next(error));
-}
+  .populate('reservations.room')
+  .then((user) => {
+    if (user) {
+      user.checkPassword(req.body.password).then((match) => {
+        if (match) {
+          req.session.userId = user.id;
+          // Verifica si el usuario tiene una reserva pendiente
+          if (req.params.roomId) {
+            console.log('Redirecting to /reservation');
+            res.redirect('/reservation');
+          } else {
+            console.log('Redirecting to /profile');
+            res.redirect('/profile');
+          }
+        } else {
+          renderInvalidUsername();
+        }
+      });
+    } else {
+      renderInvalidUsername();
+    }
+  })
+  .catch((error) => next(error));
+};
+
 
 
 module.exports.profile = (req, res, next) => {

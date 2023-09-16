@@ -6,6 +6,11 @@ const rooms = require('../controllers/rooms.controller');
 const secure = require('../middlewares/secure.mid');
 const payments = require('../controllers/payments.controller');
 const reservations = require('../controllers/reservations.controller');
+const extractIds = (req, res, next) => {
+  req.userId = req.user._id; // Asegúrate de que req.user esté configurado correctamente
+  req.roomId = req.params.roomId;
+  next();
+};
 
 router.get('/', (req, res) => {
     res.render('home'); 
@@ -26,9 +31,11 @@ router.post('/logout', (req, res) => {
 });
 
 router.get('/list', rooms.renderRoomList);
-router.get('/list', rooms.selectRoom);
+router.get('/select/:roomId',extractIds, rooms.selectRoom);
 
-router.get('/reservation', reservations.createReservation);
+router.get('/reservation', reservations.showReservationPage);
+router.post('/reservation', reservations.createReservation);
+
 router.get('/confirmation', (req, res) => {
   res.render('confirmation'); 
 });

@@ -36,10 +36,7 @@ const userSchema = new Schema({
       required: 'User password is required',
       minLength: [6, 'User password needs at least 6 chars']
     },
-    birthdate: {
-      type: Date,
-      required: 'User birthdate is required'
-    },
+    
     dni: {
       type: String,
       required: 'User DNI is required'
