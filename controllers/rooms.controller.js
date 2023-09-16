@@ -17,6 +17,7 @@ module.exports.renderRoomList = (req, res) => {
     });
 };
 
+
 module.exports.selectRoom = (req, res, next) => {
   const roomId= req.params.roomId;
   const userId = req.user._id;

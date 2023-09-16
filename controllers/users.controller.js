@@ -54,7 +54,6 @@ console.log(req)
       user.checkPassword(req.body.password).then((match) => {
         if (match) {
           req.session.userId = user.id;
-          // Verifica si el usuario tiene una reserva pendiente
           if (req.params.roomId) {
             console.log('Redirecting to /reservation');
             res.redirect('/reservation');
@@ -72,9 +71,16 @@ console.log(req)
   })
   .catch((error) => next(error));
 };
-
-
-
 module.exports.profile = (req, res, next) => {
-  res.render('users/profile', { user: req.user })
+  const userId = req.user._id; // Suponiendo que req.user._id sea el ID del usuario actual
+  Reservation.find({ user: userId })
+    .populate('room') // Esto asegura que la información de la habitación esté disponible en la reserva
+    .then((reservations) => {
+      // Renderizar la página del perfil y pasar las reservas a la vista
+      res.render('users/profile', { user: req.user, reservations });
+    })
+    .catch((err) => {
+      // Manejar errores aquí
+      return next(err);
+    });
 }

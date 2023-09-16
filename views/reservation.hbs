@@ -1,27 +1,29 @@
 <div class="container">
- <form method="POST" action="/reservation">
-  <div class="row">
-    <div class="col-md-6">
-      <h3>Reservation Details</h3>
-      <input value={{checkInDate}} name="checkInDate"/>
-      <input value={{checkOutDate}} name="checkOutDate"/>
-      <input value={{room.name}} name="roomName"/>
-      <input value={{room.price}} name="roomPrice"/>
+  <form method="POST" action="/reservation">
+   <input type="hidden" name="roomId" value="{{room._id}}" />
+    <div class="row">
+      <div class="col-md-6">
+        <h3>Reservation Details</h3>
+        <input value="{{checkInDate}}" name="checkInDate" />
+        <input value="{{checkOutDate}}" name="checkOutDate" />
+        <input value="{{room.name}}" name="roomName" />
+        <input value="{{room.price}}" name="roomPrice" />
+      </div>
+      <div class="col-md-6">
+        <h3>User Information</h3>
+        <input value="{{user.name}}" name="userName" />
+        <input value="{{user.email}}" name="userEmail" />
+        <input value="{{user.phone}}" name="userPhone" />
+      </div>
     </div>
-    <div class="col-md-6">
-      <h3>User Information</h3>
-      <input value={{user.name}} name="userName"/>
-      <input value={{user.email}} name="userEmail"/>
-      <input value={{user.phone}} name="userPhone"/>
-    </div>
-  </div>
 
-  <div class="mt-4">
-    <h3>Total:</h3>
-    <input value={{room.price}} name="roomPrice"/>
-  </div>
-  <div class="mt-4">
-    <a href="/confirmation" class="btn btn-primary">Confirmar Reserva</a>
-  </div>
+    <div class="mt-4">
+      <h3>Total:</h3>
+      <input value="{{room.price}}" name="roomPrice" />
+    </div>
+    <div class="mt-4">
+      <!-- Add a submit button -->
+      <button type="submit" class="btn btn-primary">Confirmar Reserva</button>
+    </div>
+  </form>
 </div>
-</form>

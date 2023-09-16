@@ -3,14 +3,22 @@ const Reservation = require('../models/reservation.model');
 const User = require('../models/user.model');
 const Room = require('../models/room.model');
 
-module.exports.showReservationPage = (req, res) => {
+module.exports.showReservationPage = (req, res, next) => {
     const {checkInDate, checkOutDate, roomId} = req.query
-    res.render('reservation',{checkInDate, checkOutDate}); 
+    const user = req.user;
+    Room.findById(roomId)
+    .then((room) => {
+      if (!room) {
+        return res.status(404).send('Habitación no encontrada');
+      }
+      res.render('reservation',{checkInDate, checkOutDate, user, room}); 
+    })
+    .catch(next);
   }; 
   
 module.exports.createReservation = (req, res, next) => {
     const { checkOutDate, checkInDate, userId, roomId } = req.body;
-
+    console.log(`roomId: ${roomId}`);
     const newReservation = new Reservation({
       checkOutDate,
       checkInDate,
@@ -28,7 +36,7 @@ module.exports.createReservation = (req, res, next) => {
               .then(() => {
                 delete req.session.roomId;
 
-                res.redirect('/reservation');
+                res.redirect('/confirmation');
               })
               .catch(next);
           })

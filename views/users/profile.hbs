@@ -11,14 +11,25 @@
           <li class="list-group-item"><strong>Address:</strong> {{user.address}}</li>
         </ul>
       </div>
-      <div class="card mt-4">
-        <div class="card-body">
-          <h5 class="card-title">Reserved Room</h5>
-          Room: {{this.room.name}}
-        </div>
-      </div>
-    </div>
-    <div class="col-md-6 mt-4"> 
+    <div class="card mt-4">
+  <div class="card-body">
+    <h5 class="card-title">Reserved Room(s)</h5>
+    {{#if reservations.length}}
+      <ul>
+        {{#each reservations}}
+          <li>
+            Room: {{this.room.name}}
+            Check-In Date: {{this.checkInDate}}
+            Check-Out Date: {{this.checkOutDate}}
+          </li>
+        {{/each}}
+      </ul>
+    {{else}}
+      No reservations available
+    {{/if}}
+  </div>
+</div>
+  <div class="col-md-6 mt-4"> 
       <div class="text-end"> 
         <form action="/logout" method="post">
          <button type="submit" class="btn btn-danger">Log Out</button>
