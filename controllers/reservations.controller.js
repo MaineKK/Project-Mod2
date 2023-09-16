@@ -1,14 +1,17 @@
 const Reservation = require('../models/reservation.model');
+const User = require('../models/user.model');
+const Room = require('../models/room.model');
 
 
 module.exports.createReservation = (req, res, next) => {
     const { checkOutDate, checkInDate, userId, roomId } = req.body;
+    const selectedRoomId = req.session.selectedRoomId;
 
     const newReservation = new Reservation({
       checkOutDate,
       checkInDate,
       room: roomId, 
-      user: userId, 
+      user: req.user._id, 
      
     });
   
@@ -21,6 +24,8 @@ module.exports.createReservation = (req, res, next) => {
           
             Room.findByIdAndUpdate(roomId, { $push: { reservations: reservation._id } })
               .then(() => {
+                delete req.session.selectedRoomId;
+
                 res.redirect('/confirmation');
               })
               .catch(next);

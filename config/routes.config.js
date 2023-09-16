@@ -25,24 +25,21 @@ router.post('/logout', (req, res) => {
   
 });
 
-router.get('/rooms', rooms.searchRooms)
-router.get('/list', rooms.searchRooms);
-router.get('/select/:roomId', (req, res) => {
-  const roomId = req.params.roomId;
+router.get('/list', rooms.renderRoomList);
+router.get('/list', rooms.selectRoom);
 
-  res.redirect('/login');
+router.get('/reservation', reservations.createReservation);
+router.get('/confirmation', (req, res) => {
+  res.render('confirmation'); 
 });
-
 router.get('/payment', (req, res) => {
     res.render('payment'); 
 });
 router.post('/processPayment', payments.processPayment);
 
-router.get('/reservation', reservations.createReservation);
 
 
-router.get('/confirmation', (req, res) => {
-  res.render('confirmation'); 
-});
+
+
 
 module.exports = router;

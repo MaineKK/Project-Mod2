@@ -1,14 +1,34 @@
 const Room = require('../models/room.model');
 const mongoose = require('mongoose');
+const User = require('../models/user.model');
 
-module.exports.searchRooms = (req, res, next) => {
-  console.log("here")
-    const checkOutDate = new Date ("2023-09-04")
-    Room.find({ $or: [ { checkOut: { $lt: checkOutDate } }, { availabilty: true } ] })
- .then((availableRooms) => {
-    console.log(availableRooms)
-      res.render('rooms/list', { rooms: availableRooms });
+
+module.exports.renderRoomList = (req, res) => {
+  Room.find()
+    .then((rooms) => {
+      res.render('rooms/list', { rooms });
     })
-    .catch((error) => console.log(error));
+    .catch((error) => {
+      console.error(error);
+      
+      res.status(500).send('Error al obtener la lista de habitaciones');
+    });
+};
+
+module.exports.selectRoom = (req, res, next) => {
+  const roomId = req.params.roomId;
+  const userId = req.user._id;
+  Room.findById(roomId)
+    .then((room) => {
+      if (!room) {
+        return res.status(404).send('Habitación no encontrada');
+      }
+      User.findByIdAndUpdate(userId, { $push: { reservations: room._id } })
+        .then(() => {
+          res.redirect('/reservation');
+        })
+        .catch(next);
+    })
+    .catch(next); 
 };
 
