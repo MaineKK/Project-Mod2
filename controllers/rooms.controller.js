@@ -28,7 +28,6 @@ module.exports.selectRoom = (req, res, next) => {
       }
       User.findByIdAndUpdate(userId, { $push: { reservations: room._id } })
         .then(() => {
-          // Configura req.session.selectedRoomId aquí
           req.session.roomId = roomId;
           console.log(`Selected Room ID: ${req.session.roomId}`);
           res.redirect('/reservation');
