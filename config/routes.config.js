@@ -54,6 +54,9 @@ router.get('/contact', (req, res) => {
   res.render('contact');
 });
 
+router.get('/restaurants',(req, res) => {
+  res.render('restaurants')
+  });
 
 
 
