@@ -47,7 +47,9 @@ router.get('/aboutUs', (req, res) => {
 router.get('/winery', (req, res) => { 
   res.render('winery');
 });
-
+router.get('/wellness', (req, res) => {
+  res.render('wellness');
+});
 router.get('/contact', (req, res) => { 
   res.render('contact');
 });
