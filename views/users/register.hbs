@@ -1,3 +1,4 @@
+<body class="bg-secondary-subtle"></body>
 <div class="row justify-content-center">
   <div class="col-12 col-md-4">
     <h1 class="mb-3">Register</h1>
@@ -10,8 +11,6 @@
             <input type="text" name="name" class="form-control {{#if errors.name}}is-invalid{{/if}}" placeholder="Name" aria-label="Name" value="{{ user.name }}">
             {{#if errors.name}}<div class="invalid-feedback">{{ errors.name }}</div>{{/if}} 
           </div>
-
-        
 
          <div class="input-group mb-1">
             <span class="input-group-text"><i class="fa fa-fw fa-tag"></i></span>

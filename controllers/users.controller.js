@@ -72,15 +72,37 @@ console.log(req)
   .catch((error) => next(error));
 };
 module.exports.profile = (req, res, next) => {
-  const userId = req.user._id; // Suponiendo que req.user._id sea el ID del usuario actual
+  const userId = req.user._id; 
   Reservation.find({ user: userId })
-    .populate('room') // Esto asegura que la información de la habitación esté disponible en la reserva
+    .populate('room') 
     .then((reservations) => {
-      // Renderizar la página del perfil y pasar las reservas a la vista
+      
       res.render('users/profile', { user: req.user, reservations });
     })
     .catch((err) => {
-      // Manejar errores aquí
+      
       return next(err);
     });
+}
+
+
+module.exports.addCard = (req, res, next) => {
+  const userId = req.user._id;
+  const { cardHolderName, cardNumber, expirationDate, cvv } = req.body;
+  const lastFour = lastFourDigits(cardNumber);
+  
+  User.findByIdAndUpdate(userId, {
+    $set: {
+      cardInfo: {
+        cardHolderName,
+        cardNumber: lastFour,
+        expirationDate,
+        cvv,
+      },
+    },
+  })
+    .then(() => {
+      res.redirect('/profile'); 
+    })
+    .catch((error) => next(error));
 }

@@ -1,29 +1,50 @@
 <div class="container">
-  <form method="POST" action="/reservation">
-   <input type="hidden" name="roomId" value="{{room._id}}" />
+  <form method="POST" action="/reservation" class="reservation-form bg-light-gray">
+    <input type="hidden" name="roomId" value="{{room._id}}" />
     <div class="row">
       <div class="col-md-6">
-        <h3>Reservation Details</h3>
-        <input value="{{checkInDate}}" name="checkInDate" />
-        <input value="{{checkOutDate}}" name="checkOutDate" />
-        <input value="{{room.name}}" name="roomName" />
-        <input value="{{room.price}}" name="roomPrice" />
+        <h3 class="section-title">Reservation Details</h3>
+        <div class="form-group">
+          <label for="checkInDate">Check-In Date</label>
+          <input type="text" class="form-control" id="checkInDate" name="checkInDate" value="{{checkInDate}}" readonly />
+        </div>
+        <div class="form-group">
+          <label for="checkOutDate">Check-Out Date</label>
+          <input type="text" class="form-control" id="checkOutDate" name="checkOutDate" value="{{checkOutDate}}" readonly />
+        </div>
+        <div class="form-group">
+          <label for="roomName">Room Name</label>
+          <input type="text" class="form-control" id="roomName" name="roomName" value="{{room.name}}" readonly />
+        </div>
+        <div class="form-group">
+          <label for="roomPrice">Room Price</label>
+          <input type="text" class="form-control" id="roomPrice" name="roomPrice" value="{{room.price}}€" readonly />
+        </div>
       </div>
       <div class="col-md-6">
-        <h3>User Information</h3>
-        <input value="{{user.name}}" name="userName" />
-        <input value="{{user.email}}" name="userEmail" />
-        <input value="{{user.phone}}" name="userPhone" />
+        <h3 class="section-title">User Information</h3>
+        <div class="form-group">
+          <label for="userName">Name</label>
+          <input type="text" class="form-control" id="userName" name="userName" value="{{user.name}}" readonly />
+        </div>
+        <div class="form-group">
+          <label for="userEmail">Email</label>
+          <input type="text" class="form-control" id="userEmail" name="userEmail" value="{{user.email}}" readonly />
+        </div>
+        <div class="form-group">
+          <label for="userPhone">Phone Number</label>
+          <input type="text" class="form-control" id="userPhone" name="userPhone" value="{{user.phone}}" readonly />
+        </div>
       </div>
     </div>
 
     <div class="mt-4">
-      <h3>Total:</h3>
-      <input value="{{room.price}}" name="roomPrice" />
+      <h3 class="section-title">Total:</h3>
+      <input type="text" class="form-control" id="totalPrice" name="totalPrice" value="{{room.price}}€" readonly />
     </div>
+
     <div class="mt-4">
-      <!-- Add a submit button -->
-      <button type="submit" class="btn btn-primary">Confirmar Reserva</button>
+      <button type="submit" class="btn btn-primary">Confirm Reservation</button>
     </div>
   </form>
 </div>

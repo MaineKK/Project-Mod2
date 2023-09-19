@@ -49,11 +49,17 @@ const userSchema = new Schema({
       type: String,
       required: 'User phone number is required'
     },
-
+    cardInfo: {
+      cardHolderName: String,
+      cardNumber: String,
+      expirationDate: String,
+      cvv: String,
+    },
     reservations: [{
       type: Schema.Types.ObjectId,
       ref: 'Reservation' 
     }],
+    
 
   }, { timestamps: true });
 

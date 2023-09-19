@@ -1,3 +1,4 @@
+<body class="bg-secondary-subtle"></body>
 <div class="container mt-5">
   <div class="row justify-content-center">
     <div class="col-md-6">
@@ -11,25 +12,59 @@
           <li class="list-group-item"><strong>Address:</strong> {{user.address}}</li>
         </ul>
       </div>
+    </div>
+  </div>
+</div>
+
     <div class="card mt-4">
   <div class="card-body">
     <h5 class="card-title">Reserved Room(s)</h5>
-    {{#if reservations.length}}
+{{#if reservations.length}}
+  <ul>
+    {{#each reservations}}
+      <li>
+        Room: {{this.room.name}}
+      </li>
+      <li>
+        Check-In Date: {{this.checkInDate}}
+      </li>
+      <li>
+        Check-Out Date: {{this.checkOutDate}}
+      </li>
+      <li>
+        Price: {{this.room.price}}€
+      </li>
+    {{/each}}
+  </ul>
+{{else}}
+  No reservations available
+{{/if}}
+  </div>
+</div>
+<div class="col-md-12 mt-4"> 
+    <div class="text-center"> 
+      <a href="/payment" class="btn btn-primary">
+        <i class="fab fa-cc-visa"></i> Add payment card
+      </a>
+</div>
+</div>
+<div class="card mt-4">
+  <div class="card-body">
+    <h5 class="card-title">Payment Information</h5>
+     <ul style="font-size: 18px;"></ul>
+    {{#if user.cardInfo}}
       <ul>
-        {{#each reservations}}
-          <li>
-            Room: {{this.room.name}}
-            Check-In Date: {{this.checkInDate}}
-            Check-Out Date: {{this.checkOutDate}}
-          </li>
-        {{/each}}
+        <li><strong>Card Holder Name:</strong> {{user.cardInfo.cardHolderName}}</li>
+         <li><strong>Card Number:</strong> {{user.cardInfo.cardNumber}}</li>
+        <li><strong>Expiration Date:</strong> {{user.cardInfo.expirationDate}}</li>
       </ul>
     {{else}}
-      No reservations available
+      No payment information available
     {{/if}}
   </div>
 </div>
-  <div class="col-md-6 mt-4"> 
+
+  <div class="col-md-15 mt-4"> 
       <div class="text-end"> 
         <form action="/logout" method="post">
          <button type="submit" class="btn btn-danger">Log Out</button>
